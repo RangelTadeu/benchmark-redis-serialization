@@ -11,6 +11,8 @@
     "autocannon": "node src/tests/autocannon.mjs",
     "redis:up": "docker run -p 6379:6379 --name redis_benchmark redis:alpine",
     "redis:down": "docker stop redis_benchmark; docker rm redis_benchmark",
+    "jsonencode": "node src/tests/encodeTime.mjs json",
+    "msgpackencode": "node src/tests/encodeTime.mjs msgpack",
     "json10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 json' --kill-others",
     "msgpack10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 msgpack' --kill-others",
     "json100": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100 json' --kill-others",

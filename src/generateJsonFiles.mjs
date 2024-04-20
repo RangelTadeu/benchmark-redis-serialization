@@ -1,16 +1,5 @@
 import fs from "fs";
-import { faker } from "@faker-js/faker";
-
-function createRandomUser() {
-  return {
-    userId: faker.string.uuid(),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    birthdate: faker.date.birthdate(),
-    registeredAt: faker.date.past(),
-    lastLogin: faker.date.recent(),
-  };
-}
+import { createRandomUser } from "./tests/utils.mjs";
 
 function createFile(ItemsQtd, fileName) {
   const file = fs.createWriteStream(fileName);
