@@ -1,0 +1,35 @@
+{
+  "name": "benchmark-redis-serialization",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "createfiles": "node src/generateJsonFiles.mjs",
+    "start": "node src/tests/server.mjs",
+    "wait-for-api": "wait-on tcp:localhost:3000",
+    "autocannon": "node src/tests/autocannon.mjs",
+    "redis:up": "docker run -p 6379:6379 --name redis_benchmark redis:alpine",
+    "redis:down": "docker stop redis_benchmark; docker rm redis_benchmark",
+    "json10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 json' --kill-others",
+    "msgpack10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 msgpack' --kill-others",
+    "json100": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100 json' --kill-others",
+    "msgpack100": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100 msgpack' --kill-others",
+    "json1k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 1k json' --kill-others",
+    "msgpack1k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 1k msgpack' --kill-others",
+    "json10k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10k json' --kill-others",
+    "msgpack10k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10k msgpack' --kill-others",
+    "json100k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100k json' --kill-others",
+    "msgpack100k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100k msgpack' --kill-others"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "autocannon": "^7.15.0",
+    "express": "^4.19.2",
+    "ioredis": "^5.4.1",
+    "msgpackpackr": "^1.10.1"
+  },
+  "devDependencies": {
+    "wait-on": "^7.2.0"
+  }
+}
