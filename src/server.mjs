@@ -1,12 +1,12 @@
 import express from "express";
 import { Packr } from "msgpackr";
-import redis from "../redisClient.mjs";
-import json_10 from "../jsonFiles/10.json" assert { type: "json" };
-import json_100 from "../jsonFiles/100.json" assert { type: "json" };
-import json_1k from "../jsonFiles/1k.json" assert { type: "json" };
-import json_10k from "../jsonFiles/10k.json" assert { type: "json" };
-import json_100k from "../jsonFiles/100k.json" assert { type: "json" };
-import json_1m from "../jsonFiles/1m.json" assert { type: "json" };
+import redis from "./redisClient.mjs";
+import json_10 from "./jsonFiles/10.json" assert { type: "json" };
+import json_100 from "./jsonFiles/100.json" assert { type: "json" };
+import json_1k from "./jsonFiles/1k.json" assert { type: "json" };
+import json_10k from "./jsonFiles/10k.json" assert { type: "json" };
+import json_100k from "./jsonFiles/100k.json" assert { type: "json" };
+import json_1m from "./jsonFiles/1m.json" assert { type: "json" };
 
 const files = {
   10: json_10,

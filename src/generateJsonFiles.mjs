@@ -1,5 +1,5 @@
 import fs from "fs";
-import { createRandomUser } from "./tests/utils.mjs";
+import { createRandomUser } from "./utils.mjs";
 
 function createFile(ItemsQtd, fileName) {
   const file = fs.createWriteStream(fileName);

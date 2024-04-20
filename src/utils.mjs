@@ -14,7 +14,7 @@ export function createRandomUser() {
 
 export function saveResults(testName, results) {
   const data = JSON.stringify(results, null, 2);
-  fs.writeFileSync(`src/tests/results/${testName}.json`, data);
+  fs.writeFileSync(`src/results/${testName}.json`, data);
 
   console.log(`Results for test ${testName} saved`);
 }

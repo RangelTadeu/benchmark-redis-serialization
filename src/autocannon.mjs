@@ -1,5 +1,5 @@
 import autocannon from "autocannon";
-import redis from "../redisClient.mjs";
+import redis from "./redisClient.mjs";
 import { formatMemory, saveResults } from "./utils.mjs";
 
 const testSize = process.argv[2];
