@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "redis-metrics": "node src/getRedisMetrics.mjs",
     "createfiles": "node src/generateJsonFiles.mjs",
     "start": "node src/server.mjs",
     "wait-for-api": "wait-on tcp:localhost:3000",
@@ -13,16 +14,22 @@
     "redis:down": "docker stop redis_benchmark; docker rm redis_benchmark",
     "jsonencode": "node src/encodeTime.mjs json",
     "msgpackencode": "node src/encodeTime.mjs msgpack",
+    "gzipencode": "node src/encodeTime.mjs gzip",
     "json10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 json' --kill-others",
     "msgpack10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 msgpack' --kill-others",
+    "gzip10": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10 gzip' --kill-others",
     "json100": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100 json' --kill-others",
     "msgpack100": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100 msgpack' --kill-others",
+    "gzip100": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100 gzip' --kill-others",
     "json1k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 1k json' --kill-others",
     "msgpack1k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 1k msgpack' --kill-others",
+    "gzip1k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 1k gzip' --kill-others",
     "json10k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10k json' --kill-others",
     "msgpack10k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10k msgpack' --kill-others",
+    "gzip10k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 10k gzip' --kill-others",
     "json100k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100k json' --kill-others",
-    "msgpack100k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100k msgpack' --kill-others"
+    "msgpack100k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100k msgpack' --kill-others",
+    "gzip100k": "concurrently 'yarn start' 'yarn wait-for-api; yarn autocannon 100k gzip' --kill-others"
   },
   "dependencies": {
     "@faker-js/faker": "^8.4.1",

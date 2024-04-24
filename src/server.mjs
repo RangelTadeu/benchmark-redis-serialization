@@ -7,6 +7,7 @@ import json_1k from "./jsonFiles/1k.json" assert { type: "json" };
 import json_10k from "./jsonFiles/10k.json" assert { type: "json" };
 import json_100k from "./jsonFiles/100k.json" assert { type: "json" };
 import json_1m from "./jsonFiles/1m.json" assert { type: "json" };
+import zlib from "zlib";
 
 const files = {
   10: json_10,
@@ -30,6 +31,11 @@ const serializerFunctions = {
   msgpack: {
     encode: packr.pack.bind(packr),
     decode: packr.unpack.bind(packr),
+  },
+  gzip: {
+    encode: async (data) =>
+      zlib.gzipSync(Buffer.from(JSON.stringify(data), "utf-8")),
+    decode: async (data) => JSON.parse(zlib.gunzipSync(data).toString("utf-8")),
   },
 };
 
@@ -58,7 +64,7 @@ getExpressInstance(async (req, res) => {
 
   try {
     const cached =
-      serializer === "msgpack"
+      serializer === "msgpack" || serializer === "gzip"
         ? await redis.getBuffer(key)
         : await redis.get(key);
 

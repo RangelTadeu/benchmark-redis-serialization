@@ -1,6 +1,7 @@
 import { Packr } from "msgpackr";
 import { createRandomUser } from "./utils.mjs";
 import { saveResults } from "./utils.mjs";
+import zlib from "zlib";
 
 const serializer = process.argv[2];
 
@@ -12,6 +13,13 @@ const packr = new Packr({
 const pack = packr.pack.bind(packr);
 
 const qtdItemsPerTest = [10, 100, 1000, 10_000, 100_000];
+
+const encoder = {
+  json: JSON.stringify,
+  msgpack: pack,
+  gzip: async (data) =>
+    zlib.gzipSync(Buffer.from(JSON.stringify(data), "utf-8")),
+};
 
 function mensureEncodeTimes(serializer, encodeFn) {
   const summary = {
@@ -42,7 +50,7 @@ function mensureEncodeTimes(serializer, encodeFn) {
   return summary;
 }
 
-const encodeFn = serializer === "json" ? JSON.stringify : pack;
+const encodeFn = encoder[serializer];
 
 const results = mensureEncodeTimes(serializer, encodeFn);
 
