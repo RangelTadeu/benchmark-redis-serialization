@@ -63,7 +63,7 @@ There is a script for each test and array size in the Package.json file.
 | 10k          | 2.5 MB | 1.5 MB  | -40.0%     |
 | 100k         | 24 MB  | 16 MB   | -33.3%     |
 
-### Enconding times (ms)
+### Encoding times (ms)
 
 | Array Length | Json   | MsgPack | Difference |
 | ------------ | ------ | ------- | ---------- |
